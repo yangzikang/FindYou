@@ -22,8 +22,10 @@ import com.amap.api.navi.model.NaviLatLng;
 import com.autonavi.tbt.NaviStaticInfo;
 import com.autonavi.tbt.TrafficFacilityInfo;
 
+import butterknife.BindView;
+
 public class MapActivity extends Activity implements AMapNaviViewListener, AMapNaviListener {
-    AMapNaviView mAMapNaviView;
+    @BindView(R.id.navi_view) AMapNaviView mAMapNaviView;
     AMapNavi mAMapNavi;
 
     @Override
@@ -32,7 +34,6 @@ public class MapActivity extends Activity implements AMapNaviViewListener, AMapN
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_map);
 
-        mAMapNaviView = (AMapNaviView) findViewById(R.id.navi_view);
         mAMapNaviView.onCreate(savedInstanceState);
         mAMapNaviView.setAMapNaviViewListener(this);
 

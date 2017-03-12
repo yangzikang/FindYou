@@ -31,14 +31,25 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.navi.model.NaviLatLng;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class LocationActivity extends Activity implements LocationSource, AMapLocationListener {
 
-    MapView mMapView = null;
+
+    @BindView(R.id.map) MapView mMapView;
     AMap aMap;
     private LocationSource.OnLocationChangedListener mListener;
     private AMapLocationClient                       mlocationClient;
     private AMapLocationClientOption                 mLocationOption;
-    private TextView                                 mLocationErrText;
+    @BindView(R.id.location_errInfo_text) TextView   mLocationErrText;
+    @OnClick(R.id.button)
+    void sendMessage(){
+        Toast.makeText(LocationActivity.this,"button",Toast.LENGTH_SHORT).show();
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("+8618641154350",null,"1234",null,null);
+    }
 
 
     private IntentFilter receiveFilter;
@@ -48,33 +59,19 @@ public class LocationActivity extends Activity implements LocationSource, AMapLo
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_location);
-
-        //获取地图控件引用
-        mMapView = (MapView) findViewById(R.id.map);
+        ButterKnife.bind(this);
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，实现地图生命周期管理
         mMapView.onCreate(savedInstanceState);
         aMap = mMapView.getMap();
 
 
         setUpMap();
-        mLocationErrText = (TextView)findViewById(R.id.location_errInfo_text);
         mLocationErrText.setVisibility(View.GONE);
 
         receiveFilter =new IntentFilter();
         receiveFilter.addAction("android.provider.Telephony.SMS_RECEIVED");
         messageReceiver= new MessageReceiver();
         registerReceiver(messageReceiver,receiveFilter);
-
-        Button sendMessage = (Button)findViewById(R.id.button);
-        sendMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(LocationActivity.this,"button",Toast.LENGTH_SHORT).show();
-
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage("+8618641154350",null,"1234",null,null);
-            }
-        });
 
 
     }

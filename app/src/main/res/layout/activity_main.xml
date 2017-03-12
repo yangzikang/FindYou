@@ -17,4 +17,13 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:text="进入使用网页"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enter"
+        android:layout_alignStart="@+id/enter"
+        android:layout_marginTop="13dp"
+        android:id="@+id/connectInternet" />
+
 </RelativeLayout>

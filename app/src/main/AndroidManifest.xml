@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dell.findyou">
 
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -36,7 +36,8 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity android:name=".MapActivity" />
-        <activity android:name=".LocationActivity"></activity>
+        <activity android:name=".LocationActivity" />
+        <activity android:name=".HttpActivity"></activity>
     </application>
 
 </manifest>
